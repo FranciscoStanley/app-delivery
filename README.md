@@ -23,6 +23,7 @@ Este é um projeto completo de agendamento e gerenciamento de entregas, composto
 - **Estrutura de Diretórios (Exemplo):**
 
 
+```javascript
 backend/
 ├── src/
 │ ├── app.module.ts
@@ -40,8 +41,7 @@ backend/
 │ └── notifications-gatewaychat.gateway.ts
 └── prisma/
 └── schema.prisma
-
-
+```
 
 ### Front-End
 - **Framework:** Next.js (App Router)
@@ -55,7 +55,7 @@ backend/
 - Modal de Chat de Suporte interativo, com opção para selecionar emojis e enviar mensagens.
 - **Estrutura de Diretórios (Exemplo):**
 
-
+```javascript
 front/
 ├── .env.local
 ├── next.config.js
@@ -77,8 +77,7 @@ front/
 ├── Sidebar.tsx // Sidebar com links e alternância de tema
 ├── DeliveryChart.tsx // Gráficos de barras e pizza
 └── ChatSupport.tsx // Chat interativo com modal, emojis e campo de texto
-
-
+````
 
 ## Tecnologias Utilizadas
 
