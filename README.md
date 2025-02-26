@@ -61,22 +61,30 @@ front/
 ├── next.config.js
 ├── package.json
 ├── tsconfig.json
-└── app/
-├── layout.tsx // Layout raiz com Sidebar fixa e ChatSupport
-├── page.tsx // Dashboard: lista todas as entregas e gráficos
-├── schedule/
-│ └── page.tsx // Página para agendar nova entrega
-├── history/
-│ └── page.tsx // Página para histórico de agendamento
-├── completed/
-│ └── page.tsx // Página para entregas finalizadas
-├── pending/
-│ └── page.tsx // Página para entregas pendentes
-└── components/
-├── DeliveryCard.tsx
-├── Sidebar.tsx // Sidebar com links e alternância de tema
-├── DeliveryChart.tsx // Gráficos de barras e pizza
-└── ChatSupport.tsx // Chat interativo com modal, emojis e campo de texto
+├── app/
+│ ├── layout.tsx // Layout raiz com Sidebar fixa e ChatSupport
+│ ├── page.tsx // Dashboard: lista todas as entregas e gráficos
+│ ├── schedule/
+│ │ └── page.tsx // Página para agendar nova entrega
+│ ├── history/
+│ │ └── page.tsx // Página para histórico de agendamento
+│ ├── completed/
+│ │ └── page.tsx // Página para entregas finalizadas
+│ ├── pending/
+│ │ └── page.tsx // Página para entregas pendentes
+│ ├── emoji-mart.css
+│ └── types/ // Tipos específicos do app
+│   ├── delivery.d.ts
+│   └── demoji-mart.d.ts
+├── components/
+│ ├── chat/
+│ │ └── ChatSupport.tsx // Chat interativo com modal, emojis e campo de texto
+│ ├── delivery/
+│ │ ├── DeliveryCard.tsx
+│ │ └── DeliveryChart.tsx // Gráficos de barras e pizza
+│ └── sidebar/
+│   └── Sidebar.tsx // Sidebar com links e alternância de tema
+├──
 ````
 
 ## Tecnologias Utilizadas
