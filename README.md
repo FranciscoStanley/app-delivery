@@ -1,4 +1,4 @@
-```markdown
+
 # Delivery App
 
 Este é um projeto completo de agendamento e gerenciamento de entregas, composto por um back-end desenvolvido com NestJS (utilizando Prisma para ORM e Socket.IO para notificações e chat) e um front-end desenvolvido com Next.js, TypeScript e Chakra UI. O projeto integra funcionalidades como:
@@ -21,7 +21,7 @@ Este é um projeto completo de agendamento e gerenciamento de entregas, composto
   - **NotificationsGateway:** Gateway para envio de notificações em tempo real.
   - **ChatGateway:** Gateway para gerenciamento de um chat de suporte.
 - **Estrutura de Diretórios (Exemplo):**
-```
+
 
 backend/
 ├── src/
@@ -41,7 +41,7 @@ backend/
 └── prisma/
 └── schema.prisma
 
-```
+
 
 ### Front-End
 - **Framework:** Next.js (App Router)
@@ -54,7 +54,7 @@ backend/
 - Dashboard com gráficos (barras e pizza) exibindo estatísticas de entregas.
 - Modal de Chat de Suporte interativo, com opção para selecionar emojis e enviar mensagens.
 - **Estrutura de Diretórios (Exemplo):**
-```
+
 
 front/
 ├── .env.local
@@ -78,7 +78,7 @@ front/
 ├── DeliveryChart.tsx // Gráficos de barras e pizza
 └── ChatSupport.tsx // Chat interativo com modal, emojis e campo de texto
 
-````
+
 
 ## Tecnologias Utilizadas
 
