@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js" 
+}
+
+datasource db {
+  provider = "sqlite" // ou o provider que preferir (postgres, mysql, etc.)
+  url      = "file:./dev.db"
+}
+
+model Delivery {
+  id          Int      @id @default(autoincrement())
+  customer    String
+  address     String
+  scheduledAt DateTime
+  status      String   @default("PENDING")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ChatMessage {
+  id        Int      @id @default(autoincrement())
+  content   String
+  sender    String?   // Opcional: nome ou ID do remetente
+  createdAt DateTime @default(now())
+}
