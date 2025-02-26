@@ -1,13 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Container, Heading, Stack, Spinner, useToast } from "@chakra-ui/react";
+import {
+  Container,
+  Heading,
+  Stack,
+  Spinner,
+  Box,
+  useToast,
+} from "@chakra-ui/react";
 import { io, Socket } from "socket.io-client";
-import DeliveryCard, { Delivery } from "./components/DeliveryCard";
-import DeliveryChart from "./components/DeliveryChart";
 import axios from "axios";
-
-let socket: Socket;
+import DeliveryCard, { Delivery } from "./components/delivery/DeliveryCard";
+import DeliveryChart from "./components/delivery/DeliveryChart";
 
 export default function HomePage() {
   const [deliveries, setDeliveries] = useState<Delivery[]>([]);
@@ -31,7 +36,7 @@ export default function HomePage() {
     fetchDeliveries();
 
     // Conecta ao WebSocket para notificações
-    socket = io(process.env.NEXT_PUBLIC_API_URL);
+    const socket: Socket = io(process.env.NEXT_PUBLIC_API_URL || "");
     socket.on("newDelivery", (data) => {
       toast({
         title: "Nova entrega recebida",
@@ -46,25 +51,32 @@ export default function HomePage() {
     return () => {
       socket.disconnect();
     };
-  }, []);
+  }, [toast]);
 
   return (
     <Container maxW="container.lg" py={10}>
-      <Heading mb={6}>Dashboard de Entregas</Heading>
+      <Heading mb={6} textAlign="center">Dashboard de entregas</Heading>
       {loading ? (
         <Spinner />
       ) : (
         <>
-          <Stack spacing={4}>
-            {deliveries.map((delivery) => (
-              <DeliveryCard
-                key={delivery.id}
-                delivery={delivery}
-                onUpdate={fetchDeliveries}
-              />
-            ))}
-          </Stack>
-          {deliveries.length > 0 && <DeliveryChart deliveries={deliveries} />}
+          {/* Gráficos encapsulados em um quadrado */}
+          <Box borderWidth="1px" borderRadius="md" p={4}>
+            {deliveries.length > 0 && <DeliveryChart deliveries={deliveries} />}
+          </Box>
+
+          {/* Espaço entre os gráficos e a listagem */}
+          <Box mt={6} borderWidth="1px" borderRadius="md" p={4}>
+            <Stack spacing={4}>
+              {deliveries.map((delivery) => (
+                <DeliveryCard
+                  key={delivery.id}
+                  delivery={delivery}
+                  onUpdate={fetchDeliveries}
+                />
+              ))}
+            </Stack>
+          </Box>
         </>
       )}
     </Container>

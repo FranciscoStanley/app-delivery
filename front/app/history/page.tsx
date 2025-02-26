@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Container, Heading, Stack, Spinner } from "@chakra-ui/react";
+import { Container, Heading, Stack, Spinner, Box } from "@chakra-ui/react";
 import axios from "axios";
-import DeliveryCard, { Delivery } from "../components/DeliveryCard";
+import DeliveryCard, { Delivery } from "../components/delivery/DeliveryCard";
 
 export default function HistoryPage() {
   const [deliveries, setDeliveries] = useState<Delivery[]>([]);
@@ -28,15 +28,17 @@ export default function HistoryPage() {
 
   return (
     <Container maxW="container.lg" py={10}>
-      <Heading mb={6}>Histórico de Agendamentos</Heading>
+      <Heading mb={6} textAlign="center">Histórico de agendamentos</Heading>
       {loading ? (
         <Spinner />
       ) : (
-        <Stack spacing={4}>
-          {deliveries.map((delivery) => (
-            <DeliveryCard key={delivery.id} delivery={delivery} />
-          ))}
-        </Stack>
+        <Box borderWidth="1px" borderRadius="md" p={4}>
+          <Stack spacing={4}>
+            {deliveries.map((delivery) => (
+              <DeliveryCard key={delivery.id} delivery={delivery} />
+            ))}
+          </Stack>
+        </Box>
       )}
     </Container>
   );

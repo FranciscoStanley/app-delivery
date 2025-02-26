@@ -10,6 +10,7 @@ import {
   Title,
   Tooltip,
   Legend,
+  ChartOptions,
 } from "chart.js";
 import { Bar, Pie } from "react-chartjs-2";
 
@@ -58,23 +59,27 @@ const DeliveryDashboard: React.FC<DeliveryDashboardProps> = ({
     ],
   };
 
-  const options = {
+  // Definindo as opções para o gráfico de barras
+  const barOptions: ChartOptions<"bar"> = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: { position: "top" as const },
+      legend: { position: "top" },
       title: { display: true, text: "Entregas por Status" },
     },
   };
+
+  // Para o gráfico de pizza, podemos reutilizar as opções, fazendo cast para ChartOptions<"pie">
+  const pieOptions: ChartOptions<"pie"> = barOptions as ChartOptions<"pie">;
 
   return (
     <Box p={4} bg="white" borderRadius="md" boxShadow="md" mt={4}>
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
         <Box height="400px">
-          <Bar data={data} options={options} />
+          <Bar data={data} options={barOptions} />
         </Box>
         <Box height="400px">
-          <Pie data={data} options={options} />
+          <Pie data={data} options={pieOptions} />
         </Box>
       </SimpleGrid>
     </Box>

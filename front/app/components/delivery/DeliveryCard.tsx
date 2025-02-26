@@ -1,5 +1,6 @@
 "use client";
 
+import { FC, useCallback, useMemo } from "react";
 import {
   Box,
   Heading,
@@ -7,7 +8,6 @@ import {
   Button,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { FC } from "react";
 import axios from "axios";
 
 export type Delivery = {
@@ -21,23 +21,28 @@ export type Delivery = {
 interface DeliveryCardProps {
   delivery: Delivery;
   onUpdate?: () => void;
+  showFinalizeButton?: boolean; // Nova prop adicionada
 }
 
-const DeliveryCard: FC<DeliveryCardProps> = ({ delivery, onUpdate }) => {
-  const handleFinalize = async () => {
+const DeliveryCard: FC<DeliveryCardProps> = ({ delivery, onUpdate, showFinalizeButton = false }) => {
+  const bgColor = useColorModeValue("white", "gray.700");
+  const textColor = useColorModeValue("black", "white");
+
+  const formattedDate = useMemo(
+    () => new Date(delivery.scheduledAt).toLocaleString(),
+    [delivery.scheduledAt]
+  );
+
+  const handleFinalize = useCallback(async () => {
     try {
       await axios.patch(
         `${process.env.NEXT_PUBLIC_API_URL}/deliveries/${delivery.id}/finalize`
       );
-      if (onUpdate) onUpdate();
+      onUpdate?.();
     } catch (error) {
       console.error("Erro ao finalizar entrega:", error);
     }
-  };
-
-  // Define cores diferentes para modos claro e escuro
-  const bgColor = useColorModeValue("white", "gray.700");
-  const textColor = useColorModeValue("black", "white");
+  }, [delivery.id, onUpdate]);
 
   return (
     <Box
@@ -46,15 +51,13 @@ const DeliveryCard: FC<DeliveryCardProps> = ({ delivery, onUpdate }) => {
       borderWidth="1px"
       borderRadius="md"
       bg={bgColor}
-      color={textColor} // Aplica a cor do texto baseada no modo de cor
+      color={textColor}
     >
       <Heading fontSize="xl">{delivery.customer}</Heading>
       <Text mt={2}>Endereço: {delivery.address}</Text>
-      <Text mt={2}>
-        Agendado para: {new Date(delivery.scheduledAt).toLocaleString()}
-      </Text>
+      <Text mt={2}>Agendado para: {formattedDate}</Text>
       <Text mt={2}>Status: {delivery.status}</Text>
-      {delivery.status === "PENDING" && (
+      {showFinalizeButton && delivery.status === "PENDING" && (
         <Button mt={4} colorScheme="teal" onClick={handleFinalize}>
           Finalizar Entrega
         </Button>

@@ -1,0 +1,114 @@
+/* emoji-mart.css - Versão Completa Exemplo */
+
+/* Container principal do emoji-mart */
+.emoji-mart {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  position: relative;
+  display: inline-block;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  max-width: 350px;
+  overflow: hidden;
+}
+
+/* Área de pesquisa */
+.emoji-mart-search {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  outline: none;
+  box-sizing: border-box;
+}
+
+/* Lista de emojis com rolagem */
+.emoji-mart-scroll {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+/* Cada emoji individual */
+.emoji-mart-emoji {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  line-height: 32px;
+  margin: 2px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.emoji-mart-emoji:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Navegação entre categorias */
+.emoji-mart-categories {
+  display: flex;
+  border-top: 1px solid #ddd;
+  background-color: #f9f9f9;
+}
+
+.emoji-mart-category {
+  flex: 1;
+  text-align: center;
+  padding: 6px 0;
+  cursor: pointer;
+  font-size: 14px;
+  color: #888;
+  transition: color 0.2s;
+}
+
+.emoji-mart-category:hover,
+.emoji-mart-category.selected {
+  color: #333;
+}
+
+/* Exemplos de categorias com alguns emojis */
+
+/* Smileys & Emotion */
+.emoji-mart-emoji.smileys::before {
+  content: "😀 😃 😄 😁 😆 😅 😂 🤣 😊 😇";
+}
+
+/* Animals & Nature */
+.emoji-mart-emoji.animals::before {
+  content: "🐶 🐱 🐭 🐹 🐰 🦊 🐻 🐼 🐨 🐯";
+}
+
+/* Food & Drink */
+.emoji-mart-emoji.foods::before {
+  content: "🍏 🍎 🍐 🍊 🍋 🍌 🍉 🍇 🍓 🍒";
+}
+
+/* Activity */
+.emoji-mart-emoji.activities::before {
+  content: "⚽️ 🏀 🏈 ⚾️ 🎾 🏐 🎱 🏓 🏸 🥊";
+}
+
+/* Travel & Places */
+.emoji-mart-emoji.travel::before {
+  content: "🚗 🚕 🚙 🚌 🚎 🏎 🚓 🚑 🚒 🚐";
+}
+
+/* Objects */
+.emoji-mart-emoji.objects::before {
+  content: "⌚️ 📱 💻 ⌨️ 🖥 🖨 🖱 💾 💿 📀";
+}
+
+/* Symbols */
+.emoji-mart-emoji.symbols::before {
+  content: "❤️ 🧡 💛 💚 💙 💜 🖤 🤍 🤎 💔";
+}
+
+/* Flags */
+.emoji-mart-emoji.flags::before {
+  content: "🇧🇷 🇺🇸 🇬🇧 🇨🇦 🇦🇺 🇫🇷 🇩🇪 🇮🇹 🇪🇸 🇯🇵";
+}
+
+/* Personalizações adicionais podem ser adicionadas conforme necessário */
